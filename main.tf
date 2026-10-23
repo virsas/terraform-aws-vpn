@@ -46,4 +46,10 @@ resource "aws_ec2_client_vpn_route" "vss" {
   client_vpn_endpoint_id = aws_ec2_client_vpn_endpoint.vss[0].id
   target_vpc_subnet_id   = var.vpn_association_subnet_id
   destination_cidr_block = var.vpn_target_networks[count.index]
+
+  lifecycle {
+    ignore_changes = [
+      description,
+    ]
+  }
 }
